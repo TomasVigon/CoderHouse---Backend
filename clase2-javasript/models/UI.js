@@ -6,21 +6,21 @@ export class UI {
 
     showChoices(choices, callback) {
         const choicesContainer = document.getElementById("choices")
-        choicesContainer.innerHTML = ''
+        choicesContainer.innerHTML = '' //esto es para que no se acumulen las preguntas
+        //sino cada vez que se cambia de pagina se muestran todas las preguntas nuevamente
         for (let i=0; i<choices.length; i++) {
             const button = document.createElement("button")
             button.innerText = choices[i]
-            button.className = "button"
+            button.className = "button" //para que tome los estilos del boton
             button.addEventListener('click', () => callback(choices[i]))
-            choicesContainer.append(button)
+            choicesContainer.append(button) //para que se agregue el boton al DOM
         }
-        return choicesContainer
     }
 
     showScore(score) {
         const quizEndHTML = `
-            <h1>Resault</h1>
-            <h2>Your fina score is: ${score} </h2>
+            <h1>Result</h1>
+            <h2>Your final score is: ${score} </h2>
         `
         const element = document.getElementById("quiz")
         element.innerHTML = quizEndHTML

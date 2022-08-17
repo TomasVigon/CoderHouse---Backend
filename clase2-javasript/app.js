@@ -1,5 +1,3 @@
-import { data } from './data.js'
-import { Question } from './models/Question.js'
 import { questionsArray } from './questions.js'
 import { Quiz } from './models/Quiz.js'
 import { UI } from './models/UI.js'
