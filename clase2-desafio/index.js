@@ -1,3 +1,6 @@
+const User = require('./user.js')
+
+/*
 class User {
     constructor(name, surname, books, pets) {
         this.name = name
@@ -30,7 +33,7 @@ class User {
     }
 
 }
-
+*/
 const main = () => {
     const usuario = new User('tomas', 'vigon',
      [ {name: "cosmos", author: "messi"}, {name: "matilda", author: "albert einstein"} ],
@@ -38,15 +41,14 @@ const main = () => {
 
     console.log(usuario);
     console.log(usuario.countMascota());
-    usuario.addPet('lucas');
+    usuario.addPet('lila');
     console.log(usuario.countMascota());
     console.log(usuario);
     console.log(usuario.getFullName());
     console.log(usuario.getBooksName());
-    console.log(usuario.addBook("la mano de dios", "yo"));
+    usuario.addBook("la mano de dios", "yo");
     console.log(usuario);
     console.log(usuario.getBooksName());
-
 }
 
 main();
