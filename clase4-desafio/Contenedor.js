@@ -32,7 +32,7 @@ class Contenedor {
                 let data = await fs.promises.readFile(`${this.fileName}.txt`, 'utf-8')
                 const info = JSON.parse(data)
                 let objToReturn = info.find(obj => obj.id === id)
-                if(!objToReturn) objToReturn = 'Id out of boundaries'
+                if(!objToReturn) objToReturn = null
                 return {status: "success", message: objToReturn } 
             }
             else {

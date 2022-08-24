@@ -14,7 +14,7 @@ const main = () => {
         return container.save(theSecObj)
     }).then(result => {
         console.log(result)
-        return container.getById(3)
+        return container.getById(15)
     }).then(result => {
         console.log(result)
         return container.deleteById(2)
