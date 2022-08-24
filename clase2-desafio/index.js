@@ -1,4 +1,4 @@
-const User = require('./user.js')
+const User = require('./User.js')
 
 const main = () => {
     const usuario = new User('tomas', 'vigon',
