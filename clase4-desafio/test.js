@@ -33,7 +33,7 @@ const main = () => {
     }).then(result => {
         console.log(result)
         return container.save(theObj)
-    })
+    }).then(result => console.log(result))
 }
 
 main();
