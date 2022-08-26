@@ -1,12 +1,14 @@
 [
   {
-    "prueba": 134,
-    "pais": ":)",
+    "title": ":)",
+    "price": 2,
+    "thumbnaill": "https://plataforma.coderhouse.com/cursos/32110/programacion-backend",
     "id": 1
   },
   {
-    "prueba": 1234,
-    "messi": "crack",
+    "title": "crack",
+    "price": 1234,
+    "thumbnaill": "https://plataforma.coderhouse.com/cursos/32110/programacion-backend",
     "id": 2
   }
 ]
