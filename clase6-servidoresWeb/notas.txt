@@ -1,0 +1,20 @@
+hay servidores http y express. 
+el http un modulo nativo de node pero con mas limitaciones. el express es mas completo y se instala a parte.
+
+el protocolo http es el que se usa para la comunicacion entre cliente y servidor
+
+npm list -g indica las librerias que se intalan de forma global
+la instalacion se hace en la computadora, este paquete instalado se hace accesible desde cualquier ruta
+
+Instalamos nodemon. es una aplicacion que se ejecuta constantemente, va a hacer que nuestra aplicacion js
+se ejecute constantemente, en caso de que algun archivo cambie.
+se intala con el comando npm i -g nodemon
+el -g indica que se intala de forma global
+
+al ejecutar en consola node index.js ejecuta una sola vez y termina
+nodemon index.js espera a que haya un cambio en el archivo para volver a ejecutarse
+
+en el ejemplo de index y server. al ejecutar con node cada vez que hago un cambio tengo que cerrar 
+el servidor y volver a abrirlo. con nodemon NO
+
+instalar express de forma local npm i express
