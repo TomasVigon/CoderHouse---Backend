@@ -43,7 +43,6 @@ app.get('/productos',  (request, response) => {
 
 app.get('/productoRandom',  (request, response) => {
     let i = getRandomInt(products.length)
-    console.log(i);
     response.send({
         producto: products[i]
     })

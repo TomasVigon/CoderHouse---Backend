@@ -12,10 +12,6 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   };
 
-app.get('/', (request, response) => {
-    response.send(`<h1 style="color:blue;">boca</h1>`)
-})
-
 app.get('/productos',  (request, response) => {
     container.getAll().then(result => response.send(result.message));
 })
