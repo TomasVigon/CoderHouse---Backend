@@ -30,10 +30,6 @@ let products = [
     }
 ]
 
-app.get('/', (request, response) => {
-    response.send(`<h1 style="color:blue;">boca</h1>`)
-})
-
 app.get('/productos',  (request, response) => {
     response.send({
         status: "success",
