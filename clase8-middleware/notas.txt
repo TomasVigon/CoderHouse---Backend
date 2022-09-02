@@ -1,0 +1,10 @@
+La clase Router se usa para crear un nuevo objeto de enrutador,
+que es una instancia aisalda de middleware y rutas. 
+
+Las rutas nos van a ayudar a tener todas las rutas mas organizadas.
+Evita tener una ruta para cada metodo utilizado por objeto.
+
+Middleware: se ejecuta antes de ir a las rutas.
+El ejemplo de app.use('/content', express.static('public'))
+
+npm i multer

@@ -1,0 +1,11 @@
+repasar el funcionamiento del protocolo http y su uso en una aplicacion RESTfull
+comprender el concepto de api REST
+implementar los verbos get, post, put, delete en el servidor basado en express
+usar postman para generar request
+
+codigos de estado:
+Cada msj de respuesta de HTTP tiene un codigo de estado que indica el resultado de la peticion
+
+JSON va a ser el lenguaje uiversal para la conmunicacion entre servidor y cliente
+
+Arquitectura cliente servidor sin estado (stateless)
