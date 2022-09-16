@@ -1,0 +1,18 @@
+html
+    head
+        title="Document from PUG"
+    body
+        if products.length > 0
+            table
+                tbody
+                    tr
+                    th Name
+                    th Price
+                    th URL
+                    each item in products
+                        tr
+                        td !{item.name} 
+                        td !{item.price} 
+                        td !{item.thumbnail} 
+        else 
+            p No hay datos

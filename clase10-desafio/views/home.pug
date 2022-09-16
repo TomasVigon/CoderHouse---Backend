@@ -1,0 +1,12 @@
+html
+    head
+        title="Document from PUG"
+    body
+        form(action='/products', method='post')
+            label Nombre:
+            input(type='text', name='name', pattern='[a-zA-Z ]+')
+            label Precio:
+            input(type='number', name='price', min='0', step='0.01')
+            label Url:
+            input(type='url', name='thumbnail')
+            button Enviar

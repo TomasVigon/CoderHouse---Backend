@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 app.use('/products', productsRouter);
 app.set('views', './views')
-app.set('view engine', 'ejs')
+app.set('view engine', 'pug')
 
 app.get('/', (req, res) => {
     res.render('home')
