@@ -1,0 +1,14 @@
+<%- include('./partials/head') %>
+<ul>
+<% users.forEach(ele => { %>
+    <li>
+        <%=ele.fName %>: 
+        <% if (ele.age) { %>
+            <%=ele.age %>
+        <% } else { %>
+            No especificado
+        <% } %> 
+         
+    </li>
+<% }) %>
+</ul>

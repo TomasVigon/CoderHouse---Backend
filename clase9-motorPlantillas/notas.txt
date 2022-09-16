@@ -1,0 +1,8 @@
+Los motores de plantilla son los generadores de los templates. En las plantillas hay datos dinamicos
+que conforman la plantilla. Ej: perfil insta, nombre, apellido, foto, frase.
+
+El modelo MVC va a servir para separar por modulos nuestra aplicacion.
+
+Al usar plantillas el codigo resultante es mas organizado. Permiten reutilzar secciones de codigo.
+
+Handlebars es un lenguaje de plantillas simple
