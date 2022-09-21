@@ -1,0 +1,31 @@
+Comprender diferencia entre HTTP y Websockets
+Intregrar Websockets a nuestro proyecto Express
+Generar la inicilaizacion sobre el cliente para conectarse al servidor mediante Websockets
+
+Websocket es un protocolo de red basado en TCP que establece como deben intercambiarse datos entre redes
+Es fiable y eficiente, se accede mas rapido a los datos
+Establece conexiones entre dos puntos finales de comunicacion, llamados sockets
+El intercambio de datos se produce en dos direcciones, es una conexion bidireccional
+Websocket permite comunicacion abierta y en tiempo real
+
+La comuncacion arranca del cliente al servidor mediante HTTP, el servidor devuelve el handshake. 
+A partir de alli se establece la conexion Websocket
+
+Websocket deja el canal de comunicacion abierto. 
+Tanto el servidor como el cliente pueden enviar informacion sin que el otro lo solicite
+
+Websocket no es un sustituto de HTML, es un complemento
+
+Vamos a usar la libreria socket.io. Tiene dos partes.
+Una biblioteca del lado cliente que se ejecuta en el navegador (front)
+Una biblioteca del lado del servidor para Node.js (back)
+Se puede usar como un contenedor para Websocket. Se puede instalar con vpn
+
+Socket.io es fiable. Se establecen en presencia de proxies, 
+balanceadores de carga (varios servidores back que reciben muchas solicitudes del front, 
+el balanceador distribuye las solcitudes a los servidores), firewall personal y software antivirus
+Deteccion de desconeccion y soprte binario.
+
+npm i socket.io express
+
+
