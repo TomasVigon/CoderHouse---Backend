@@ -1,6 +1,7 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
 const productsRouter = require('./routes/products')
+let products = require('./models/product.model')
 
 const app = express()
 
@@ -16,5 +17,5 @@ app.set('views', './src/views')
 app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
-    res.render('home')
+    res.render('home', {products})
 })
