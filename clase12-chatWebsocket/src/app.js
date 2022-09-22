@@ -25,12 +25,14 @@ io.on('connection', socket => {
 
     socket.on('message', data => {
         history.push(data)
+        //emite a todos
         io.emit('history', history)
     })
     socket.on('registered', data => {
         //broadcast emite a todos los clientes conectados menos a uno mismo
         socket.broadcast.emit('newUser', data)
         //esta linea es para que cuando un nuevo usuario se conecte, le aparezcan los msj viejos
+        //emite a uno mismo
         socket.emit('history', history)
     })
 })
