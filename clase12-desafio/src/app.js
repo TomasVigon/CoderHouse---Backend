@@ -1,10 +1,15 @@
 const express = require('express')
 
 const app = express()
+const handlebars = require('express-handlebars')
 
 const PORT = process.env.PORT || 8080
 const server = app.listen(PORT, () => console.log(`Server up on port ${PORT}`))
 
+app.engine('handlebars', handlebars.engine())
+app.set('views', './src/views')
+app.set('view engine', 'handlebars')
+
 app.get('/', (req, res) => {
-    res.send("Hello Desafio Coder!!!")
+    res.render('home')
 })
