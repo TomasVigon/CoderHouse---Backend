@@ -1,3 +1,7 @@
+//NOTA
+// en ningun servidor que deploye se puede usar nodemon
+// por eso ponemos node en el package.json
+
 const express = require('express')
 const { Server } = require('socket.io')
 
