@@ -34,11 +34,10 @@ router.get('/:id', middleware, (req, res) => {
 
 router.post('/', (req, res) => {
     let singleProduct = req.body;
-    console.log(singleProduct);
     singleProduct.id = getLastId() + 1;
     products.push(singleProduct);
     // res.send({ product: getProduct(singleProduct.id) });  
-    res.redirect('/')
+    res.send(products)
 })
 
 router.put('/:id', middleware, (req, res) => {
