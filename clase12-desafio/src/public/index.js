@@ -1,4 +1,17 @@
 const socket = io()
+let user
+let chatBox = document.getElementById("chatBox")
+Swal.fire({
+    title: "Login",
+    input: "email",
+    text: "Enter your email",
+    allowOutsideClick: false
+}).then(result => {
+    user = result.value
+    socket.emit('registered', user)
+})
+
+
 let productsForm = document.getElementById('productsForm')
 
 const handleSubmit = (evt, form, route) => {
@@ -19,11 +32,11 @@ const handleSubmit = (evt, form, route) => {
 }
 productsForm.addEventListener('submit', (e) => handleSubmit(e, e.target, '/products'))
 
-socket.on('history', data => {
+socket.on('historyTable', data => {
     let history = document.getElementById('productsTable')
     let html
     if(data.length === 0) {
-        html = `<div>Hola</div>`    
+        html = `<div>No hay datos</div>`    
     } else {
         html = `
         <table>
@@ -44,4 +57,21 @@ socket.on('history', data => {
     }
     
     history.innerHTML = html
+})
+
+chatBox.addEventListener('keyup', (evt) => {
+    if(evt.key === "Enter") {
+        socket.emit('message', {user, message: chatBox.value})
+        chatBox.value = ""
+    }
+})
+
+socket.on('historyChat', data => {
+    let history = document.getElementById('historyChat')
+    let messages = ""
+    console.log('data', data);
+    data.forEach(msg => {
+        messages += `${msg.user} dice: ${msg.message}<br>`
+    });
+    history.innerHTML = messages
 })

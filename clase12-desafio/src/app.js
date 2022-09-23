@@ -3,6 +3,8 @@ const { Server } = require('socket.io')
 const handlebars = require('express-handlebars')
 const productsRouter = require('./routes/products')
 let products = require('./models/product.model')
+let messages = require('./models/chat.model')
+let users = {}
 
 const app = express()
 
@@ -28,10 +30,23 @@ app.use('/products', productsRouter);
 io.on('connection', socket => {
     console.log(`New user connected: ${socket.id}`)
     
-    socket.emit('history', products)
     socket.on('newProduct', data => {
         //emite a todos
         //en este caso data es lo mismo que products, porque ya el post hace el push
-        io.emit('history', data)
+        io.emit('historyTable', data)
     })
+
+    socket.on('message', data => {
+        messages.push(data)
+        //emite a todos
+        io.emit('historyChat', messages)
+    })
+
+    socket.on('registered', data => {
+        //recien cuando te conectas podes ver el log de prodcutos
+        socket.emit('historyTable', products)
+        socket.emit('historyChat', messages)
+    })
+
+    
 })
