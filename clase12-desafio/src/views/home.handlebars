@@ -7,21 +7,4 @@
     <input type='url' name="thumbnail">
     <input type="submit">
 </form>
-{{#if products}}
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>URL</th>
-    </tr>
-    {{#each products}}
-        <tr>
-            <td>{{this.name}}</td>
-            <td>{{this.price}}</td>
-            <td>{{this.thumbnail}}</td>
-        </tr>
-    {{/each}}
-</table>
-{{else}}
-<p>No hay datos</p>
-{{/if}}
+<div id="productsTable">No hay datos</div>

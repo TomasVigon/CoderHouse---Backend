@@ -13,9 +13,29 @@ const handleSubmit = (evt, form, route) => {
             "Content-type": "application/json"
         }
     }).then(response => response.json())
-        .then(response => console.log(response))
+        .then(response => {
+            socket.emit('newProduct', response)
+        })
 }
-// aunque le estoy enviando el post y hago el fetch de ese servicio, no se actualizan los datos 
-// asumo que esto es porque la comunicacion no es bidireccional como la de los sockets
-
 productsForm.addEventListener('submit', (e) => handleSubmit(e, e.target, '/products'))
+
+socket.on('history', data => {
+    let history = document.getElementById('productsTable')
+    let html = `
+    <table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>URL</th>
+    </tr>
+    `
+    data.forEach(product => {
+        html += `<tr>
+        <td>${product.name}</td>
+        <td>${product.price}</td>
+        <td>${product.thumbnail}</td>
+    </tr>`
+    });
+    html += `</table>`
+    history.innerHTML = html
+})
