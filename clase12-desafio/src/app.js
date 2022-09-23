@@ -2,6 +2,7 @@ const express = require('express')
 const { Server } = require('socket.io')
 const handlebars = require('express-handlebars')
 const productsRouter = require('./routes/products')
+let products = require('./models/product.model')
 
 const app = express()
 
@@ -26,7 +27,8 @@ app.use('/products', productsRouter);
 
 io.on('connection', socket => {
     console.log(`New user connected: ${socket.id}`)
-
+    
+    socket.emit('history', products)
     socket.on('newProduct', data => {
         //emite a todos
         //en este caso data es lo mismo que products, porque ya el post hace el push

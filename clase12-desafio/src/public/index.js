@@ -21,21 +21,27 @@ productsForm.addEventListener('submit', (e) => handleSubmit(e, e.target, '/produ
 
 socket.on('history', data => {
     let history = document.getElementById('productsTable')
-    let html = `
-    <table>
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>URL</th>
-    </tr>
-    `
-    data.forEach(product => {
-        html += `<tr>
-        <td>${product.name}</td>
-        <td>${product.price}</td>
-        <td>${product.thumbnail}</td>
-    </tr>`
-    });
-    html += `</table>`
+    let html
+    if(data.length === 0) {
+        html = `<div>Hola</div>`    
+    } else {
+        html = `
+        <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>URL</th>
+        </tr>
+        `
+        data.forEach(product => {
+            html += `<tr>
+            <td>${product.name}</td>
+            <td>${product.price}</td>
+            <td>${product.thumbnail}</td>
+        </tr>`
+        });
+        html += `</table>`
+    }
+    
     history.innerHTML = html
 })
