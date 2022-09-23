@@ -1,31 +1,27 @@
-<div>
-    <form action="/products" method="post">
-        <label>Nombre:</label>
-        <input type='text' name='name' pattern="[a-zA-Z ]+">
-        <label>Precio:</label>
-        <input type='number' name='price' min="0" step="0.01" name="price">
-        <label>Url:</label>
-        <input type='url' name="thumbnail">
-        <button>Enviar</button>
-    </form>
-    <div>
-    {{#if products}}
-    <table>
+<form id="productsForm">
+    <label>Nombre:</label>
+    <input type='text' name='name' pattern="[a-zA-Z ]+">
+    <label>Precio:</label>
+    <input type='number' name='price' min="0" step="0.01" name="price">
+    <label>Url:</label>
+    <input type='url' name="thumbnail">
+    <input type="submit">
+</form>
+{{#if products}}
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>URL</th>
+    </tr>
+    {{#each products}}
         <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>URL</th>
+            <td>{{this.name}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.thumbnail}}</td>
         </tr>
-        {{#each products}}
-            <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.price}}</td>
-                <td>{{this.thumbnail}}</td>
-            </tr>
-        {{/each}}
-    </table>
-    {{else}}
-    <p>No hay datos</p>
-    {{/if}}
-    </div>
-</div>
+    {{/each}}
+</table>
+{{else}}
+<p>No hay datos</p>
+{{/if}}
