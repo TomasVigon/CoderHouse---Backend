@@ -1,0 +1,14 @@
+[
+  {
+    "user": "a@a.com",
+    "message": "hola",
+    "date": "25/09/2022 10:56:51",
+    "id": 1
+  },
+  {
+    "user": "b@a.com",
+    "message": "hola!",
+    "date": "25/09/2022 10:57:04",
+    "id": 2
+  }
+]
