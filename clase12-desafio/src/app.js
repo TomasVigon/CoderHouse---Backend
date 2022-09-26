@@ -1,10 +1,10 @@
 const express = require('express')
 const { Server } = require('socket.io')
 const handlebars = require('express-handlebars')
+const moment = require('moment')
 const productsRouter = require('./routes/products')
 let products = require('./models/product.model')
 let messages = require('./models/chat.model')
-let users = {}
 
 const app = express()
 
@@ -37,7 +37,7 @@ io.on('connection', socket => {
     })
 
     socket.on('message', data => {
-        messages.push(data)
+        messages.push({...data, date: moment().format('DD/MM/YYYY hh:mm:ss')})
         //emite a todos
         io.emit('historyChat', messages)
     })

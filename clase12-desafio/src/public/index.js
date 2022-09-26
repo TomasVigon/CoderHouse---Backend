@@ -71,7 +71,9 @@ socket.on('historyChat', data => {
     let messages = ""
     console.log('data', data);
     data.forEach(msg => {
-        messages += `${msg.user} dice: ${msg.message}<br>`
+        messages += `<span style='color: #0000FF'><strong>${msg.user}</strong></span>
+        <span style='color: #765341'>${msg.date}</span>: 
+        <span style='color: #008000;font-style: italic'>${msg.message}</span><br>`
     });
     history.innerHTML = messages
 })
