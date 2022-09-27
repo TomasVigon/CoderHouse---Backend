@@ -1,0 +1,19 @@
+{
+  "name": "clase14-webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mensaje1.js",
+  "dependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node dist/main.js",
+    "build": "webpack ./mensaje1.js ./mensaje2.js ./mensaje3.js --mode=production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

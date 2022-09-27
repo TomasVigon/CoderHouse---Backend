@@ -1,0 +1,9 @@
+transpilador: convierte un codigo a otro codigo, no necesariamente es como un compilador.
+el transpilador traduce codigos que estan en el mismo nivel de abstraccion
+el compilador lo hace con lenguajes de diferentes niveles de abstraccion
+un interprete lee una linea de codigo y se ejecuta
+
+typescript es un lenguaje que es transpilado a js y se ejecuta por node
+
+babel es un transpilador que nos permite transformar nuestro codigo js ultima generacion a js que
+cualquier navegador o version de node entienda 

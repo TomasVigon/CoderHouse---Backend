@@ -1,0 +1,5 @@
+weback es un empaquetador de modulos. Toma todos los modulos y los une en un solo archivo.
+Esta orientado a la computadora y no al desarrollador. Esto hace que el servidor corra mas rapido.
+Ademas los comprime tambien.
+
+
