@@ -4,7 +4,7 @@ const router = express.Router();
 const ProductsContainer = require('../controllers/ProductsContainer')
 const productsContainer = new ProductsContainer('./src/data/products.json')
 
-let isAdmin = false
+let isAdmin = true
 
 const middleware = (req, res, next) => {
     const id = req.params.id;

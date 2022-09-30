@@ -1,6 +1,9 @@
 const fs = require('fs')
 
-class ProductsContainer {
+const ProductsContainer = require('./ProductsContainer')
+const productsContainer = new ProductsContainer('./src/data/products.json')
+
+class CarritoContainer {
     constructor(filePath) {
         this.filePath = filePath
         this.id = 0
@@ -26,13 +29,42 @@ class ProductsContainer {
         }
     }
 
+    saveProduct = async (id, id_prod) => {
+        let productResult = await productsContainer.getById(id_prod)
+        if(productResult.status !== "success"){
+            return productResult
+        } else {
+            try {
+                if(fs.existsSync(this.filePath)) {
+                    let result = await this.getById(id)
+                    if(result.status !== "success"){
+                        return result
+                    } else {
+                        let data = await fs.promises.readFile(this.filePath, 'utf-8')
+                        const info = JSON.parse(data)
+                        let infoIndex = info.findIndex(obj => obj.id == result.message.id)
+                        if(!result.message.products) result.message.products = []
+                        result.message.products.push(productResult.message)
+                        info[infoIndex] = { ...result.message };
+                        await fs.promises.writeFile(this.filePath, `${JSON.stringify(info, null, 2)}`)
+                        return {status: "success" } 
+                    }
+                } else {
+                    return {status: "error", message: 'The file does not exist' } 
+                }
+            } catch (err) {
+                return {status: "error", message: err.message }
+            }
+        }
+    }
+
     getById = async(id) => {
         try {
             if(fs.existsSync(this.filePath)) {
                 let data = await fs.promises.readFile(this.filePath, 'utf-8')
                 const info = JSON.parse(data)
                 let objToReturn = info.find(obj => obj.id === id)
-                if(!objToReturn) return {status: "error", message: "Producto no encontrado"}
+                if(!objToReturn) return {status:"error", message: "Carrito no encontrado"}
                 return {status: "success", message: objToReturn } 
             }
             else {
@@ -95,6 +127,33 @@ class ProductsContainer {
         }
     }
 
+    deleteByProdId = async(id, id_prod) => {
+        try {
+            if(fs.existsSync(this.filePath)) {
+                let result = await this.getById(id)
+                if(result.status !== "success"){
+                    return result;
+                } else {
+                    if(!result.message.products) return {error: "Producto no encontrado"}
+                    let objToDelete = result.message.products.find(obj => obj.id === id_prod)
+                    if(!objToDelete) return {error: "Producto no encontrado"}
+                    let data = await fs.promises.readFile(this.filePath, 'utf-8')
+                    let info = JSON.parse(data)
+                    let infoIndex = info.findIndex(obj => obj.id == result.message.id)
+                    result.message.products.splice(result.message.products.indexOf(objToDelete), 1)
+                    info[infoIndex] = { ...result.message, products: result.message.products}
+                    const dataToAdd = [ ...info ]
+                    await fs.promises.writeFile(this.filePath, `${JSON.stringify(dataToAdd, null, 2)}`)
+                    return {status: "success" } 
+                }
+            } else {
+                return {status: "error", message: 'The file carrito does not exist' } 
+            }
+        } catch (err) {
+            return {status: "error", message: err.message }
+        }
+    }
+
     deleteAll = async () => {
         try {
             if(fs.existsSync(this.filePath)) {
@@ -110,4 +169,4 @@ class ProductsContainer {
     }
 }
 
-module.exports = ProductsContainer
+module.exports = CarritoContainer
