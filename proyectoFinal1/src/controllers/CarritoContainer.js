@@ -42,10 +42,9 @@ class CarritoContainer {
                     } else {
                         let data = await fs.promises.readFile(this.filePath, 'utf-8')
                         const info = JSON.parse(data)
-                        let infoIndex = info.findIndex(obj => obj.id == result.message.id)
-                        if(!result.message.products) result.message.products = []
-                        result.message.products.push(productResult.message)
-                        info[infoIndex] = { ...result.message };
+                        let infoIndex = info.findIndex(obj => obj.id == id)
+                        result.message.push(productResult.message)
+                        info[infoIndex] = { ...info[infoIndex], products: result.message };
                         await fs.promises.writeFile(this.filePath, `${JSON.stringify(info, null, 2)}`)
                         return {status: "success" } 
                     }
@@ -65,7 +64,7 @@ class CarritoContainer {
                 const info = JSON.parse(data)
                 let objToReturn = info.find(obj => obj.id === id)
                 if(!objToReturn) return {status:"error", message: "Carrito no encontrado"}
-                return {status: "success", message: objToReturn } 
+                return {status: "success", message: objToReturn.products } 
             }
             else {
                 return {status: "error", message: 'The file does not exist' } 
@@ -134,14 +133,14 @@ class CarritoContainer {
                 if(result.status !== "success"){
                     return result;
                 } else {
-                    if(!result.message.products) return {error: "Producto no encontrado"}
-                    let objToDelete = result.message.products.find(obj => obj.id === id_prod)
+                    let objToDelete = result.message.find(obj => obj.id === id_prod)
                     if(!objToDelete) return {error: "Producto no encontrado"}
                     let data = await fs.promises.readFile(this.filePath, 'utf-8')
                     let info = JSON.parse(data)
-                    let infoIndex = info.findIndex(obj => obj.id == result.message.id)
-                    result.message.products.splice(result.message.products.indexOf(objToDelete), 1)
-                    info[infoIndex] = { ...result.message, products: result.message.products}
+                    let infoIndex = info.findIndex(obj => obj.id == id)
+                    result.message.splice(result.message.indexOf(objToDelete), 1)
+                    console.log(info);
+                    info[infoIndex] = { ...info[infoIndex], products: result.message}
                     const dataToAdd = [ ...info ]
                     await fs.promises.writeFile(this.filePath, `${JSON.stringify(dataToAdd, null, 2)}`)
                     return {status: "success" } 

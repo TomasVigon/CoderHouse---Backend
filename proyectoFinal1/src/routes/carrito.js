@@ -17,8 +17,11 @@ router.get('/:id/productos', middleware, (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    let singleProduct = req.body;
-    carritoContainer.save(singleProduct).then(result => res.send(result))
+    let today = new Date()
+    let date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate()
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+    let singleCarrito = { products: [], timestamp: `${date} ${time}`};
+    carritoContainer.save(singleCarrito).then(result => res.send(result))
 })
 
 router.post('/:id/productos/:id_prod', middleware, (req, res) => {

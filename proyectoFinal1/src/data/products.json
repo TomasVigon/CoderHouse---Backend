@@ -1,18 +1,22 @@
 [
   {
-    "name": "azul",
+    "name": "boca",
+    "description": "bueno",
+    "code": 123,
+    "picture": "url",
+    "price": 11,
+    "stock": 4321,
+    "timestamp": "2022/9/29 22:24:24",
     "id": 1
   },
   {
-    "name": "rojo",
-    "id": 3
-  },
-  {
-    "name": "amarillo",
-    "id": 4
-  },
-  {
-    "name": "colorado",
-    "id": 5
+    "name": "bocaaALALAa",
+    "description": "buenoo",
+    "code": 1203,
+    "picture": "urll",
+    "price": 110,
+    "stock": 560,
+    "timestamp": "2022/9/29 22:24:32",
+    "id": 2
   }
 ]

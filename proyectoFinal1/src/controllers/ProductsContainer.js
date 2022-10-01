@@ -39,6 +39,8 @@ class ProductsContainer {
                 return {status: "error", message: 'The file does not exist' } 
             }
         } catch (err) {
+            console.log('entro?');
+
             return {status: "error", message: err.message }
         }
     }
@@ -65,7 +67,7 @@ class ProductsContainer {
                 let info = JSON.parse(data)
                 let objToReturn = info.find(obj => obj.id === id)
                 if(!objToReturn) return {error: "Producto no encontrado"}
-                info[info.indexOf(objToReturn)] = { ...objToEdit, id };
+                info[info.indexOf(objToReturn)] = { ...objToReturn, ...objToEdit };
                 await fs.promises.writeFile(this.filePath, `${JSON.stringify(info, null, 2)}`)
                 return {status: "success", message: info[id-1] }
             } else {
