@@ -1,0 +1,23 @@
+Hoy nos conectaremos a la base de dato mediante aplicacion
+Vamos a integrar la dependencia Knex para habilitar a Node.js como cliente de BD
+Interactuar con MySQL / MariaDB a traves de nodeJS y Knex
+Configurar Knex para trabajar con SQLite3
+
+Knex es un generador de consultas con "baterias incluidas" para ser flexible, portatil y facil de usar
+Tiene una interfaz basada en callbacks y promesas. Se puede utilizar como un generador de consultas SQL en nodeJS
+En el ppt estan los pasos de como se debe instalar
+Vamos a utilizar metodos y funciones de javascript que nos da Knex para modificar y acceder a la BD
+
+para instalarlo npm i knex mysql
+
+Solamente iniciamos el servidor de mysql por xampp
+
+orm: Object Relational Mapping.
+odm: Object Document Mapping.
+
+SQLite es una biblioteca en lenguaje C  que implementan un motor de base de datos SQL pequeño, rapido,
+de alta confiabilidad y con todas las funciones. Su codigo fuente es de dominio publico
+El formato de archivo SQLite es estable, multiplataforma y compatible con versiones anteriores
+
+SQLite es como una base de datos pequeña. Es un archivo que almacena la informacion en binario y maneja 
+las operaciones CRUD. Tiene todas las ventajas de una BD pero local.

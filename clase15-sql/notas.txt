@@ -1,0 +1,89 @@
+¿Que es una base de datos? Es un repositorio persistente que nos permite almacenar 
+gran número de informacion de una forma organizada para su futura consulta, realizacion de busquedas, 
+nuevo ingreso de datos y muchas otras operaciones
+Un servidor de base de datos es un contenedor que puede alojar un gran numero de bases de datos y
+ofrece los servicios para conectarlas a los clientes.
+Mediante los clientes podemos interactuar con las bases de datos
+(persistencia en archivos implica traerse toda la informacion, hacer los cambios necesarios y
+volver a guardar toda la informacion, base de datos permite hacer operaciones directamente)
+
+La arquitectura cliente-servidor es un modelo de diseño de software en el que las tareas se reparten 
+entre los proveedores de recursos o servicios, llamados servidores y los demandantes, llamado clientes
+Un cliente realiza peticiones a otro programa, servidor, quien le da la respuesta.
+Un cliente de base de datos se conecta e interactua con el servidor de base de datos
+
+En lo que trabajamos nosotros, nuestro servidor de backend (express) va a ser cliente de la BD.
+
+Hay 4 tipos de clientes para base de datos.
+CLI: command line interface. Es un cliente que interactua con la base de datos medianet el uso de consola
+GUI: graphical user interface. Es un cliente que interactua con la base de datos medianet 
+el uso de una aplicacion grafica
+Web: es un cliente que interactua con la base de datos mediante el uso de un navegador. 
+Funciona a traves del browser
+Cliente de aplicacion: Es un cliente que esta implementado dentro de nuestra aplicacion backend 
+y sirve para que nuestro programa se conecte e interactue con la base de datos. Se hacen las operaciones
+por codigo. Sirve para automatizar respuestas
+
+CRUD: crear leer actualizar borrar. se usa para referirse a las funciones basicas en bases de datos
+o la capa de persistencia de un software
+
+Tipos de bases de datos. Se refieren a como se almacenan en forma logica la informacion. 
+Relacionales vs no relacionales.
+Es relacional porque la info que se guarda dentro de estas BD mantiene una relacion.
+Las no relacionales no guardan la info en documentos o de forma que no tienen relacion entre si.
+
+SQL: structured query language. Es un tipo de lenguaje vinculado con la gestion de bases de datos
+de caracter relacional, que permite la especificacion de distintas clases de operaciones entre estas.
+Gracias al alegebra y calculos relacionales, el SQL permite realizar consultas con el objetivo de 
+recuperar informacion de las bases de datos de manera sencilla
+
+Dentro de las bases de datos relacionales vamos a hablar de gestores de este tipo de base de datos
+Los gestores utilizan el lenguaje SQL. Los gestores que comentaremos se llaman MYSQL y MARIADB
+
+https://mariadb.com/kb/es/comandos-sql link de los comandos para consultar los datos
+Como nosotros usamos clientes de aplicacion no necesitaremos conocer los comandos.
+Utilizaremos ORM que es una modelo de programacion que permite mapear las estructuras de una BD relacional
+Simplifican el manejo de BD relacionales en funciones dentro de la libreria.
+
+tanto mariadb con mysql son compatibles entre si, mariadb es gratuito.
+
+Para que nuetro localhost funcione como un servidor de BD vamos a tener que instalarle software
+Le instalamos XAMPP (apache) https://www.apachefriends.org/es/
+XAMPP hace que el localhost se convierta en un servidor de BD y en un servidor Web
+
+el srvidor apache seria el equivalente al servidor express pero en php y mysql es el servidor de BD
+
+voy a C:\xampp\mysql\bin> activo el servidor mysql desde apache y ejecuto ./mysql -u root 
+no necesito ejecutar el servidor web porque estoy utilizando el cliente de consola
+el servidor web lo voy a necesitar cuando quiero usar el cliente web
+el cliente web se carga desde el boton admin de mysql 
+
+el cliente GUI para mysql es workbench. esta descripto en las laminas.
+
+comando cliente consola: SHOW DATABASES; Me permite ver las bases de datos pre cargadas por XAMPP
+Es lo mismo que vi en el panel de la izquierda con el cleinte web
+
+USE test; --> para usar una BD
+SHOW TABLES; --> me muestra las tablas dentro de la BD utilizada
+CREATE DATABASE clase15; --> me crea un BD
+USE clase15;
+CREATE TABLE users(id int NOT NULL AUTO_INCREMENT, first_name VARCHAR(20), last_name VARCHAR(20), PRIMARY KEY(id));
+--> creo tabla, nombre de la tabla users. Dentro del parentesis coloco la lista de los campos
+primer campo id, tipo entero, no puede estar vacio y se tiene que autoincrementar cada vez.
+segundo campo se llama primer nombre, va a ser del tipo VARCHAR(20) equivalente a string de max 20 caracteres
+lo mismo para el tercer campo que se llama apellido.
+luego le digo que el primary key es el id.
+Con todo eso se creo la tabla.
+
+La tabla esta todavia vacia. Si quiero insertar los datos desde el cliente web, simplemente toco la tab insertar
+
+INSERT INTO users (first_name, last_name) VALUES ("Alex", "Marin"); --> insertar elementos
+SELECT * FROM users; --> me muestra todos los datos de la tabla
+DROP DATABASE users; --> elimina la BD
+
+hay mas comandos para filtrar elementos de la tabla y demas, estos se pueden buscar.
+
+DELETE FROM usuarios WHERE id=2; --> borra cuando cumple la condicion, de una tabla
+UPDATE usuarios SET edad=24 WHERE id=1; --> actualiza
+DESCRIBE usuarios; --> me muestra la estructura de la tabla
+DROP TABLE usuarios; --> elmina la tabla
