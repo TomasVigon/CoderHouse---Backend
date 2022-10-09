@@ -1,49 +1,43 @@
-const fs = require('fs')
-
-const pathToFile = './chat.json'
+const knex = require('knex')
 
 class ChatManager {
-    create = async (message) => {
-        try {
-            if (fs.existsSync(pathToFile)) {
-                console.log('hola?')
-                let data = await fs.promises.readFile(pathToFile, 'utf-8')
-                let chat = JSON.parse(data)
-                let id = chat[chat.length-1].id+1
-                message = {
-                    id,
-                    email: message.email,
-                    timestamp: new Date().toLocaleString(),
-                    message: message.message
-                }
-                chat.push(message)
-                await fs.promises.writeFile(pathToFile, JSON.stringify(chat, null, 2))
-                return chat
-            } else {
-                let id = 1
-                message = {
-                    id,
-                    email: message.email,
-                    timestamp: new Date().toLocaleString(),
-                    message: message.message
-                }
-                await fs.promises.writeFile(pathToFile, JSON.stringify([message], null, 2))
-                console.log([message])
-                return [message]
+    constructor(options, tableName) {
+        const database = knex(options)
+        database.schema.hasTable(tableName).then(exists => {
+            if (!exists) {
+                database.schema.createTable(tableName, table => {
+                    table.increments('id').primary()
+                    table.string('email', 100).nullable(false)
+                    table.string('timestamp').nullable(false)
+                    table.string('message', 500).nullable(false)
+                })
+                    .then(() => console.log('Table created!'))
+                    .catch(err => console.log(err))
             }
-        } catch(err) {
-            return {status: "error", message: err.message}
+          });
+        this.database = database
+        this.table = tableName
+    }
+    create = message => {
+        const newMessage = {
+            email: message.email,
+            timestamp: new Date().toLocaleString(),
+            message: message.message
         }
+        return this.database(this.table).insert(newMessage)
+            .then(() => {
+                console.log('Message inserted!')
+                return this.findAll()
+            })
+            .catch(err => console.log(err))
     }
 
-    findAll = async () => {
-        let chat = []
-        if (fs.existsSync(pathToFile)) {
-            let data = await fs.promises.readFile(pathToFile, 'utf-8')
-            chat = JSON.parse(data)
-        }
-        return chat
+    findAll = () => {
+        return this.database.from(this.table).select('*')
+            .then(data => JSON.parse(JSON.stringify(data)))
+            .catch(err => console.log(err))
     }
+
 }
 
 module.exports = ChatManager

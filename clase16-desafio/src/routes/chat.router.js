@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const options = require('../options/sqlite3.config')
 
 const Manager = require('../controllers/chat.manager')
-const manager = new Manager()
+const manager = new Manager(options, 'chatTable')
 
 router.get('/', (req, res) => {
     manager.findAll().then(result => res.send(result))
