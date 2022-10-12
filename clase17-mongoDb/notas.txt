@@ -1,0 +1,66 @@
+Bases de datos no SQL
+Comprender la arquitectura y modo de funcionamiento de mongodb
+Instalar el servidor local de bd y ponerlo en marcha
+Utilizar clinete CLI y GUI para interactuar con mongoDB
+
+Nota a parte, firebase es un conjunto de servicio, 
+el servicio de la basde de datos no relacional de google es firestore
+
+MongoDB es una base de datos no relacional, NoSQL, orientada a documentos que ofrece 
+una gran escalabilidad y flexibilidad, y un modelo de consultas e indexacion avanzado
+
+Las bases de datos relacionales toma mucho enfasis entre las relaciones de las entidades que se guardan en la BD
+En las bases de datos noSQL se basa mas en el rendimiento de las consultas. Es orientado a las consultas
+
+Ejemplo base de datos Twitter:
+- En relacionales
+Necesito hacer por cada twit dos consultas, una para traer el texto del twit y otra para saber quien lo hizo.
+- En no relacional
+En lugar de tener un userId que me identifica al usuario, podria tener un objeto que dentro
+tiene info del user. Como la pic y username.
+Lo malo es que hay repeticion de info porque dentro de la tabla de user tengo la pic, username y slogan.
+Pero eso no importa porque lo que importa es hacer la menor cantidad de consultas posibles.
+
+MongoDB es gratuito y podemos usarlo de dos maneras
+Local: nuestra computadora servira como servidor de bases de datos no relacional (parecid a XAMPP) 
+Remota: nos regitramos en mongoAtlas y accedemos a un servidor que esta en la nube
+
+MongoDB.
+Almacena datos en documentos flexibles similares a JSON: la estructura de datos puede cambiarse con el tiempo
+El modelo de documento se asigna a los objetos en el codigo de su aplicacion para facilitar el trabajo con los datos
+Las consultas ad hoc, indexacion, y agregacion en tiempo real ofrecen maneras potentes de acceder a los datos y analizarlos
+MongoDB es un BD distribuida en su nucleo, por lo que la alta disponibildiad, la escalabilidad horizontal y
+la distribucion geografica estan integradas y son faciles de usar.
+
+En BD el id se genera automaticamente, tanto en relacionales como no relacionales.
+En mongo DB y firesgtore el id es un hash
+
+MongoDB se basa en el concepto de Coleccion, documento y propiedad. Y no usan SQL como su lenguaje principal
+La BD esta constituida de colecciones y cada coleccion esta consitutida por documentos.
+
+Hay tipos de bases de documentos no relaciones
+documentos, grafos y clave-valor --> noostros vemos documentos
+
+Lo que en una BD relacional es una tabla personas con nombre, apellido y edad, en no relacional es una coleccion
+llamada personas y dentro de cada documento tiene esa nombre, apellido y edad respecto a cada persona. 
+La diferencia es que cada documento puede tener distitnos campos completos. 
+Es decir, solo tener nombre, o solo edad y apellido.
+Esto se denomina Schema Free o libre.
+
+Documentos embebidos. documento insertado dentro de otro y ambos ligados a la misma coleccion
+Tambiens se pueden establecer referencias entre documentos o colecciones. Esto seria una especie de relaciones
+
+INSTALACION Y CONFIGURACION
+
+Estan en los ppts. Ejecutamos el servidor local.
+127.0.0.1:27017 --> servidor 127.0.0.1 puerto 27017
+
+Comandos MongoDB
+show dbs: muestra lista de bases de datos existentes
+use: selecciona la base de datos activa ( si no existe la crea )
+show collections: muestra la lista de colecciones de la base
+db.personas.insertOne({clave: valor, ...}): crea una coleccion en forma implicita
+llamada 'personas' y le inserta un documento
+db.personas.find(): busca todos los documentos que estan dentro de la coleccion 'personas'
+db.personas.insert([{name: "Tom", age: 25}, {name: "john"}]): inserta varios documentos
+db.getCollectionNames(): nombre de las colecciones

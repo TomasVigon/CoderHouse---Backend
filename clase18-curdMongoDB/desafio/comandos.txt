@@ -1,0 +1,30 @@
+mongo --> ejecuto mongo shell
+use ecommerce
+db.products.insert([{title: "camion", price: 4600, thumbnail: "https://www.google.com/"}, {title: "manzana", price: 180, thumbnail: "https://www.google.com/"}])
+db.products.insert([{title: "bici", price: 1300, thumbnail: "https://www.google.com/"}, {title: "edificio", price: 4999, thumbnail: "https://www.google.com/"}])
+db.products.insert([{title: "pelota", price: 450, thumbnail: "https://www.google.com/"}, {title: "lancha", price: 4200, thumbnail: "https://www.google.com/"}, {title: "tijera", price: 120, thumbnail: "https://www.google.com/"}])
+db.products.insert([{title: "calcu", price: 500, thumbnail: "https://www.google.com/"}, {title: "compu", price: 3500, thumbnail: "https://www.google.com/"}])
+db.products.insert([{title: "mouse", price: 750, thumbnail: "https://www.google.com/"}])
+
+db.messages.insert([{email: "a@a.com", timestamp: ISODate(), message: "hola"}, {email: "b@b.com", timestamp: ISODate(), message: "hola como estas"}, {email: "c@c.com", timestamp: ISODate(), message: "buenas a todos"}])
+db.messages.insert([{email: "a@a.com", timestamp: ISODate(), message: "hoy vamos a ver mongo"}, {email: "b@b.com", timestamp: ISODate(), message: "excelentee"}, {email: "c@c.com", timestamp: ISODate(), message: "que es mongo?"}])
+db.messages.insert([{email: "a@a.com", timestamp: ISODate(), message: "un servidor de bases de datos no relacionales"}, {email: "b@b.com", timestamp: ISODate(), message: "que es muy usado hoy en dia"}, {email: "c@c.com", timestamp: ISODate(), message: "genial"}, {email: "c@c.com", timestamp: ISODate(), message: "estoy listo"}])
+
+db.products.find()
+db.messages.find()
+
+db.products.count()
+db.messages.count()
+
+db.products.insert([{title: "moto", price: 2800, thumbnail: "https://www.google.com/"}])
+
+db.products.find({price: {$lt: 1000}})
+db.products.find({price: {$gt: 1000, $lt: 3000}})
+db.products.find({price: {$gt: 3000}})
+db.products.find({}).sort({price: 1}).limit(1).skip(2)
+
+db.products.updateMany({}, {$set: {stock: 100}})
+
+db.products.updateMany({price: {$gt: 4000}}, {$set: {stock: 0}})
+
+db.products.deleteMany({price: {$lt: 1000}})
