@@ -1,0 +1,67 @@
+Cuando hablamos de Base de Datos como Servicio (DBaaS) nos referimos a la ejecución y gestión de las 
+bases de datos, optimizadas y alojadas en la infraestructura de un proveedor de servicios cloud. 
+De esta manera, para gestionar las bases de datos en el cloud debemos contar con un 
+servicio «por detrás» como PaaS o IaaS, para estar seguros de tener la infraestructura necesaria.
+
+Podemos definir dos modalidades de servicio bien diferenciadas
+
+Modelo clásico: el cliente hace uso de la infraestructura física del proveedor 
+para alojar sus bases de datos.
+Alojamiento gestionado: el cliente se desentiende de cualquier tarea de mantenimiento y 
+gestión avanzada de la base de datos, que asumirá el proveedor.
+
+Ventaja del modelo DBaaS 
+- Se elimina la infraestructura física de la ecuación ahorrando en costos, ya que el proveedor es responsable 
+del mantenimiento y la disponibilidad de los sistemas. Los usuarios son responsables de sus propios datos.
+- Ahorro de costos generalizado. Además de prescindir de las inversiones físicas, con DBaaS se puede tener menos personal dedicado a esta tarea, ahorrar en energía y aprovechar mejor el espacio físico.
+- Escalabilidad. Con DBaaS podemos acceder a diferentes tarifas basadas principalmente en el rendimiento deseado y nuestras necesidades.
+- Personal cualificado. A través de DBaaS se accede a expertos en bases de datos que se encargarán de todas las tareas de mantenimiento, actualización, seguridad y gestión.
+
+Mongo como servicio
+Mongo Atlas
+MongoDB Atlas es un servicio de Cloud Database (Base de Datos en la Nube), que nos permite crear y 
+administrar nuestra MongoDB desde cualquier lugar del mundo a través de su plataforma.
+MongoDB Atlas está orientado a ser accesible desde el navegador y fue desarrollado con el objetivo 
+de aliviar el trabajo de los desarrolladores, al quitarles la necesidad de instalar y administrar 
+entornos de Base de Datos.
+
+Registro: https://www.mongodb.com/cloud/atlas
+
+En resumen me cree un cluster donde se van a guardar los datos del servidor
+Y cree un usuario y contraseña con privilegios de lectura y escritura 
+que unicamente puede acceder a mi base de datos desde una mi UNICA direccion IP
+
+Me conecte a mi base de datos desde la consola siguiendo los pasos del connect especificado en la pagina
+Basicamente me conecte a mi base de datos guardada en el servidor con mi cuenta
+
+Tambien puedo agregar documentos desde la pagina web (manera online)
+
+Para conectarme por mongo Compass es lo mismo, solamente tengo que seguir los pasos de la pagina
+
+desde la pagina podes crear usuarios, agregar nuevas IP's
+
+FIREBASE 
+https://console.firebase.google.com/
+
+es un conjunto de muchos servicios. desde servidores hasta hosting de paginas web.
+Nosotros usaremos Firestore. 
+En la consola creamos un proyecto para seleccionar que servicio de los disponibles queremos usar.
+Sigo el paso a paso en la pagina
+
+en el panel de la izquierda dentro de copilacion esta el servicio de Firestore
+Crear base de datos. en modo prueba
+Cree una coleccion con documentos
+
+para conectarme por codigo
+descripcion general: configuracion del proyecto: cuentas de servicio: selecciono node
+
+var admin = require("firebase-admin");
+
+var serviceAccount = require("path/to/serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+npm i firebase-admin
+npm install --save firebase-admin@10.3 para node 12

@@ -1,1 +1,0 @@
-// vamos a conectar el cliente con mongodb
