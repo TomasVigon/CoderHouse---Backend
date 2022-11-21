@@ -1,4 +1,5 @@
-import mongoose, { mongo } from "mongoose";
+// import mongoose, { mongo } from "mongoose";
+const mongoose = require("mongoose");
 // mongoose sirve para crear un esquema. Las bd no relacionales son esquema free. Cada documento
 // dentro de la misma coleccion puede tener una estructura distinta
 // vamos a necesitar un orden igualmente dependiendo de las aplicaciones que querramos darle. 
@@ -12,7 +13,7 @@ const estudiantes = [
     { nombre: 'José', apellido: 'Picos', edad: 29, dni: '34554398', curso: '2A', nota: 6 },
     { nombre: 'Lucas', apellido: 'Blanco', edad: 22, dni: '30355874', curso: '3A', nota: 10 },
     { nombre: 'María', apellido: 'García', edad: 36, dni: '29575148', curso: '1A', nota: 9 },
-    { nombre: 'Alex', apellido: 'Marin' },
+    //{ nombre: 'Alex', apellido: 'Marin' },
     { nombre: 'Federico', apellido: 'Perez', edad: 41, dni: '320118321', curso: '2A', nota: 5 },
     { nombre: 'Tomas', apellido: 'Sierra', edad: 19, dni: '38654790', curso: '2B', nota: 4 },
     { nombre: 'Carlos', apellido: 'Fernández', edad: 33, dni: '26935670', curso: '3B', nota: 2 },
@@ -34,20 +35,25 @@ const estudiantesSchema = mongoose.Schema({
 // el nombre de la tabla va en minuscula y en singular
 const EstudantesDAO = mongoose.model('estudiante', estudiantesSchema)
 
-//nos conectamos con mongodb
-await mongoose.connect('mongodb://localhost/colegio', {
-    //si no se pudo conectar despues de 5 segundos tira error
-    serverSelectionTimeoutMS: 5000,
-})
+async function asyncCall() {
+    //nos conectamos con mongodb
+    await mongoose.connect('mongodb://localhost/colegio', {
+        //si no se pudo conectar despues de 5 segundos tira error
+        serverSelectionTimeoutMS: 5000,
+    })
 
-console.log('Base de datos conectada')
+    console.log('Base de datos conectada')
 
 
-// con este recorrido del arreglo me inserta hasta encontrar el error
+    // con este recorrido del arreglo me inserta hasta encontrar el error
 
-// for (const estudiante of estudiantes) {
-//     await EstudantesDAO.create(estudiante)
-// }
+    // for (const estudiante of estudiantes) {
+    //     await EstudantesDAO.create(estudiante)
+    // }
 
-// este es en bulk, o inserta todos o ninguno (en caso de error)
-await EstudantesDAO.insertMany(estudiantes) //bulk
+    // este es en bulk, o inserta todos o ninguno (en caso de error)
+    await EstudantesDAO.insertMany(estudiantes) //bulk
+
+}
+
+asyncCall();
